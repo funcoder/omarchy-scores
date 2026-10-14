@@ -18,7 +18,9 @@ catalog.
   saves it here.
 - **Search** only finds scores: score albums, composers, cues from scores and
   playlists about film, TV and game music.
-- Also: your **Playlists**, the **Queue**, and **Devices** on `d` (Spotify Connect).
+- **Playlists** shows your score playlists. The rest are folded away under "Show N
+  other playlists", and `x` moves any playlist from one group to the other.
+- Also: the **Queue**, and **Devices** on `d` (Spotify Connect).
 
 ## How "only scores" works
 
@@ -27,6 +29,11 @@ title. Labels name scores very consistently: "(Original Motion Picture Score)",
 "Music from the HBO Series", "Original Video Game Soundtrack", "Original
 Broadway Cast Recording". A song-heavy compilation titled "Soundtrack" counts
 too.
+
+Playlists have no album title, so their name and description have to say
+"score", "soundtrack", "film" and so on. Keyword-stuffed descriptions fool
+that, and some score playlists never say so, so press `x` to put a playlist
+in the right group. Your choices are saved in `config.json`.
 
 The Composers and Classics lists ship with the plugin in `catalog.json`, so browsing
 them costs no Spotify API calls. Add your own entries there by Spotify ID.
@@ -112,6 +119,7 @@ omarchy plugin remove funcoder.scores
 | `l` | Like the playing cue |
 | `Shift+L` | Like the selected cue, or save the selected score to My scores |
 | `a` | Add the selected cue to the queue |
+| `x` | In Playlists: move a playlist into or out of your score playlists |
 | `c` | Open the score or playlist that's playing |
 | `o` | Switch between omarchified and original artwork |
 

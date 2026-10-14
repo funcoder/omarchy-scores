@@ -563,7 +563,33 @@ def op_me(_):
 def op_playlists(_):
     user = me()
     items = paged("/me/playlists", {"limit": 50}, 1000)
-    return {"items": [shape_playlist(p, user["id"]) for p in items if p]}
+    cfg = load_config()
+    include = set(cfg.get("scorePlaylists") or [])
+    exclude = set(cfg.get("otherPlaylists") or [])
+    out = []
+    for p in items:
+        if not p:
+            continue
+        shaped = shape_playlist(p, user["id"])
+        # The title guess, overridden by whatever the user has marked with x.
+        shaped["score"] = shaped["id"] in include or (shaped["id"] not in exclude and is_score_playlist(p))
+        out.append(shaped)
+    return {"items": out}
+
+
+def op_mark_playlist(args):
+    """Moves a playlist in or out of the score playlists (x in the player)."""
+    pid = str(args.get("id") or "")
+    if not pid:
+        raise ApiError("Missing playlist id")
+    score = bool(args.get("score"))
+    cfg = load_config()
+    include = [x for x in cfg.get("scorePlaylists") or [] if x != pid]
+    exclude = [x for x in cfg.get("otherPlaylists") or [] if x != pid]
+    (include if score else exclude).append(pid)
+    cfg["scorePlaylists"], cfg["otherPlaylists"] = include, exclude
+    save_config(cfg)
+    return {"id": pid, "score": score}
 
 
 def op_playlist(args):
@@ -636,7 +662,20 @@ SCORE_TITLE = re.compile(r"""
   | \bcast\s+(album|recording)\b
   | \bmusic\s+(from|for|of)\s+(the\s+)?(original\s+)?(motion\s+picture|film|movie|(tv|television|hbo|netflix|amazon|apple\s+tv\+?)\s+series|series|video\s*game|game|broadway|musical|hbo|netflix)
 """, re.I | re.X)
-PLAYLIST_WORDS = re.compile(r"\b(score|scores|soundtracks?|ost|film|films|movie|movies|cinema|cinematic|composers?|orchestral|tv|series|video\s*game|game|musicals?|broadway)\b", re.I)
+# Playlists have no album title to go by, so their name and description
+# must say it: loose words like "game", "series" or "orchestral" don't count
+# alone (they turn up on EDM and lo-fi playlists). A track title copied
+# into a name, 'X (From "Some Film")', does.
+PLAYLIST_WORDS = re.compile(r"""
+    \b(scores?|soundtracks?|o\.?s\.?t|films?|movies?|cinema|cinematic|composers?|musicals?|broadway)\b
+  | \b(video\s*game|game)\s+(music|themes?|soundtracks?|scores?)\b
+  | \b(tv|television)\s+(themes?|music|scores?|soundtracks?)\b
+  | \(from\s+["“]
+""", re.I | re.X)
+
+
+def is_score_playlist(p):
+    return bool(PLAYLIST_WORDS.search((p.get("name") or "") + " " + (p.get("description") or "")))
 
 
 def is_score(title):
@@ -811,7 +850,7 @@ def op_search(args):
             if t and is_score((t.get("album") or {}).get("name")):
                 add(tracks, shape_track(t))
         for p in (data.get("playlists") or {}).get("items") or []:
-            if p and PLAYLIST_WORDS.search((p.get("name") or "") + " " + (p.get("description") or "")):
+            if p and is_score_playlist(p):
                 add(playlists, shape_playlist(p, _me["id"]))
     needle = q.lower()
     artists = [shape_artist(c) for c in catalog().get("composers") or [] if needle in c["name"].lower()]
@@ -872,7 +911,12 @@ def local_device_id():
 NOT_CONNECTED = 428  # status marker the shell uses to open Devices
 
 
-def with_device(fn):
+def playing_on(device):
+    data = api("GET", "/me/player") or {}
+    return bool(data.get("is_playing")) and (data.get("device") or {}).get("id") == device
+
+
+def with_device(fn, starts_playback=False):
     """Runs a player command. If Spotify has no active device, plays on this
     computer (starting spotifyd if needed), else on any other online device."""
     try:
@@ -900,7 +944,17 @@ def with_device(fn):
         if not local["installed"]:
             raise ApiError("Install spotifyd to play here: sudo pacman -S spotifyd (or open Spotify on another device)")
         raise ApiError("No Spotify device came online. Check Devices (d)")
-    return fn(device)
+    result = fn(device)
+    # A device that has only just come online is listed before it obeys:
+    # spotifyd first restores its last session (paused), and a play sent in
+    # that window is dropped. So check it took, and if not, send it again.
+    if starts_playback:
+        for _ in range(6):
+            time.sleep(0.5)
+            if playing_on(device):
+                return result
+        result = fn(device)
+    return result
 
 
 def op_play(args):
@@ -916,14 +970,14 @@ def op_play(args):
         if args.get("offsetUri"):
             body["offset"] = {"uri": args["offsetUri"]}
     target = args.get("deviceId")
-    with_device(lambda dev: api("PUT", "/me/player/play", {"device_id": target or dev}, body or None))
+    with_device(lambda dev: api("PUT", "/me/player/play", {"device_id": target or dev}, body or None), starts_playback=True)
     return {"ok": True}
 
 
-def simple(method, path, params_fn=None):
+def simple(method, path, params_fn=None, starts_playback=False):
     def run(args):
         params = params_fn(args) if params_fn else {}
-        with_device(lambda dev: api(method, path, dict(params, device_id=dev) if dev else params))
+        with_device(lambda dev: api(method, path, dict(params, device_id=dev) if dev else params), starts_playback)
         return {"ok": True}
     return run
 
@@ -1143,6 +1197,7 @@ OPS = {
     "player": op_player,
     "playlists": op_playlists,
     "playlist": op_playlist,
+    "mark_playlist": op_mark_playlist,
     "album": op_album,
     "liked": op_liked,
     "recent": op_recent,
@@ -1156,7 +1211,7 @@ OPS = {
     "devices": op_devices,
     "play": op_play,
     "pause": simple("PUT", "/me/player/pause"),
-    "resume": simple("PUT", "/me/player/play"),
+    "resume": simple("PUT", "/me/player/play", starts_playback=True),
     "next": simple("POST", "/me/player/next"),
     "previous": simple("POST", "/me/player/previous"),
     "seek": simple("PUT", "/me/player/seek", lambda a: {"position_ms": max(0, int(a.get("position", 0)))}),

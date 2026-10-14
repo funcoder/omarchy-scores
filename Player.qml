@@ -86,6 +86,7 @@ Item {
   property var detailStack: []
   property var data: ({})         // tab id -> { items, loading, error, loadedAt }
   property string query: ""
+  property bool showOtherPlaylists: false
   property var searchResults: null
   property bool searching: false
   property int selectedIndex: 0
@@ -104,7 +105,13 @@ Item {
       for (var i = 0; i < items.length; i++) if (items[i].uri === ctx) { current = items.splice(i, 1)[0]; break }
       var out = []
       if (current) out.push(Object.assign({ section: "Now playing" }, current))
-      for (var j = 0; j < items.length; j++) out.push(Object.assign({ section: "Your playlists" }, items[j]))
+      var others = items.filter(function(p) { return !p.score })
+      for (var j = 0; j < items.length; j++) if (items[j].score) out.push(Object.assign({ section: "Score playlists" }, items[j]))
+      // The rest stay folded away; x on any playlist moves it across.
+      if (others.length) {
+        out.push({ kind: "toggleOthers", section: "", name: (showOtherPlaylists ? "Hide " : "Show ") + others.length + " other playlists" })
+        if (showOtherPlaylists) for (var o = 0; o < others.length; o++) out.push(Object.assign({ section: "Other playlists" }, others[o]))
+      }
       return out
     }
     if (tab === "queue") {
@@ -368,6 +375,7 @@ Item {
     if (!row || !service) return
     var kind = row.kind || row.type
     if (kind === "notice") return
+    if (kind === "toggleOthers") { showOtherPlaylists = !showOtherPlaylists; return }
     if (kind === "action") { service.playContext(row.uri); return }
     if (kind === "local") { service.connectLocal(); return }
     if (kind === "device") { if (!row.active) service.transfer(row.id); return }
@@ -393,6 +401,20 @@ Item {
       if (row.albumUri) { service.playContext(row.albumUri, row.uri); return }
       service.playUris([row.uri])
     }
+  }
+
+  // x: move a playlist between "Score playlists" and the folded-away others.
+  function markPlaylist(row) {
+    if (!row || row.type !== "playlist" || detail || tab !== "playlists") return
+    var score = !row.score
+    var items = ((data.playlists || {}).items || []).map(function(p) {
+      return p.id === row.id ? Object.assign({}, p, { score: score }) : p
+    })
+    setTabData("playlists", { items: items })
+    service.showFlash(score ? "Added “" + row.name + "” to score playlists" : "Moved “" + row.name + "” to other playlists")
+    service.request("mark_playlist", { id: row.id, score: score }, function(res) {
+      if (res.error) service.showFlash(res.error, true)
+    })
   }
 
   function moveSelection(delta) {
@@ -476,6 +498,7 @@ Item {
       return true
     }
     if (key === Qt.Key_C) { openNowPlaying(); return true }
+    if (key === Qt.Key_X) { markPlaylist(selectedRow); return true }
     if (key === Qt.Key_O) { omarchify = !omarchify; s.showFlash(omarchify ? "Omarchified artwork" : "Original artwork"); return true }
     if (key === Qt.Key_F5 || (ctrl && key === Qt.Key_R)) { refreshTab(true); return true }
     return false
@@ -1244,7 +1267,9 @@ Item {
               ? "Enter do this step  ·  ↑↓ move  ·  Super+W close"
               : (root.tab === "search" && !root.detail && root.selectedIndex < 0
                 ? "Enter search  ·  ↓ results  ·  Tab next tab  ·  Esc clear"
-                : "Enter play/open  ·  Space pause  ·  ←→ seek  ·  n/p skip  ·  +/- vol  ·  l like  ·  L save score  ·  a queue  ·  c now playing  ·  d devices  ·  Esc back")
+                : (root.tab === "playlists" && !root.detail
+                  ? "Enter open  ·  Shift+Enter play  ·  x score playlist or not  ·  Space pause  ·  n/p skip  ·  c now playing  ·  d devices"
+                  : "Enter play/open  ·  Space pause  ·  ←→ seek  ·  n/p skip  ·  +/- vol  ·  l like  ·  L save score  ·  a queue  ·  c now playing  ·  d devices  ·  Esc back"))
             color: root.foreground
             opacity: 0.5
             font.family: root.fontFamily
@@ -1306,6 +1331,7 @@ Item {
         text: {
           var m = row.modelData
           if (row.kind === "action") return root.glyph.play
+          if (row.kind === "toggleOthers") return root.glyph.list
           if (row.kind === "notice") return root.glyph.key
           if (row.kind === "device" || row.kind === "local") {
             var t = (m.type || "").toLowerCase()
@@ -1388,6 +1414,7 @@ Item {
             return parts.join("  ·  ")
           }
           if (row.kind === "artist") return "Composer  ·  Enter opens their scores"
+          if (row.kind === "toggleOthers") return "Not titled like scores. x on any playlist moves it across"
           if (row.kind === "device") return m.active ? "Playing here" + (m.volume !== null && m.volume !== undefined ? "  ·  vol " + m.volume : "") : "Enter to play here"
           if (row.kind === "local") {
             var l = root.service ? root.service.local : {}
