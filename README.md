@@ -58,10 +58,11 @@ them costs no Spotify API calls. Add your own entries there by Spotify ID.
 omarchy plugin add https://github.com/funcoder/omarchy-scores.git --enable
 ```
 
-Then bind a key in `~/.config/hypr/bindings.lua` and run `hyprctl reload`:
+Then bind a key in `~/.config/hypr/bindings.lua` and run `hyprctl reload`.
+`Super+Alt+M` is free by default and sits next to Omarchy's `Super+Shift+M` for Music:
 
 ```lua
-o.bind("SUPER + SHIFT + F", "Score Vinyl", "omarchy-shell shell toggle funcoder.scores '{}'")
+o.bind("SUPER + ALT + M", "Score Vinyl", "omarchy-shell shell toggle funcoder.scores '{}'")
 ```
 
 ## Setup
