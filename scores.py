@@ -836,7 +836,7 @@ NEW_TTL = 6 * 3600
 def op_new_scores(args):
     """Scores released in the last two weeks (Spotify's tag:new). Cached for
     hours: they change slowly and every query costs quota."""
-    cached = _cache_read("new-scores", NEW_TTL) if not args.get("force") else None
+    cached = _cache_read("new-scores-v2", NEW_TTL) if not args.get("force") else None
     if cached is not None:
         return cached
     found = {}
@@ -846,14 +846,45 @@ def op_new_scores(args):
             if a and a.get("id") not in found and is_score(a.get("name")):
                 found[a["id"]] = a
     known = composer_ids()
-    items = []
-    for a in sorted(found.values(), key=lambda a: a.get("release_date") or "", reverse=True):
+    newest = sorted(found.values(), key=lambda a: a.get("release_date") or "", reverse=True)
+    albums = []
+    for a in newest:
         by_known = any(x.get("id") in known for x in a.get("artists") or [])
-        items.append(dict(shape_album(a), section="From your composers" if by_known else "Out this fortnight"))
-    items.sort(key=lambda x: 0 if x["section"] == "From your composers" else 1)
-    result = {"items": items}
-    _cache_write("new-scores", result)
+        albums.append(dict(shape_album(a), section="From your composers" if by_known else "Out this fortnight"))
+    albums.sort(key=lambda x: 0 if x["section"] == "From your composers" else 1)
+    # Cues from composers on the list lead, so a new Desplat isn't crowded
+    # out by a dozen obscure releases from the same week.
+    by_list = sorted(newest, key=lambda a: 0 if any(x.get("id") in known for x in a.get("artists") or []) else 1)
+    result = {"items": latest_cues(by_list) + albums}
+    _cache_write("new-scores-v2", result)
     return result
+
+
+CUE_ALBUMS = 12
+CUES_PER_ALBUM = 3
+
+
+def latest_cues(albums):
+    """The opening cues (usually the main theme) of the newest scores, newest
+    first. Spotify won't batch album lookups for a development-mode app, so
+    this is one call per album, kept to a handful and cached with New."""
+    cues = []
+    for a in albums[:CUE_ALBUMS]:
+        try:
+            page = api("GET", f"/albums/{a['id']}/tracks", {"limit": CUES_PER_ALBUM}) or {}
+        except ApiError as e:
+            if e.status == 429:
+                break
+            continue
+        album = shape_album(a)
+        for t in page.get("items") or []:
+            cue = shape_track(t)
+            if not cue or not cue["uri"]:
+                continue
+            cue.update(album=a.get("name") or "", albumUri=a.get("uri") or "",
+                       image=pick_image(a.get("images"), 640), thumb=album["thumb"], section="Latest cues")
+            cues.append(cue)
+    return cues
 
 
 def op_my_scores(_):

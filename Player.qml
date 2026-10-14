@@ -99,6 +99,12 @@ Item {
     var t = service.track, ctx = service.player.contextUri || ""
     if (detail) return detailRows()
     var d = data[tab] || {}
+    if (tab === "new") {
+      var fresh = (d.items || []).map(function(x) { return Object.assign({ section: "" }, x) })
+      var cueUris = fresh.filter(function(x) { return x.type === "track" }).map(function(x) { return x.uri })
+      if (cueUris.length) fresh.unshift({ kind: "action", section: "", name: "Play the latest cues", uris: cueUris })
+      return fresh
+    }
     if (tab === "playlists") {
       var items = (d.items || []).slice()
       var current = null
@@ -376,7 +382,11 @@ Item {
     var kind = row.kind || row.type
     if (kind === "notice") return
     if (kind === "toggleOthers") { showOtherPlaylists = !showOtherPlaylists; return }
-    if (kind === "action") { service.playContext(row.uri); return }
+    if (kind === "action") {
+      if (row.uris) service.playUris(row.uris)
+      else service.playContext(row.uri)
+      return
+    }
     if (kind === "local") { service.connectLocal(); return }
     if (kind === "device") { if (!row.active) service.transfer(row.id); return }
     if (kind === "playlist" || kind === "album") {
@@ -391,7 +401,7 @@ Item {
     }
     if (kind === "track" || kind === "episode") {
       if (detail) { service.playContext(detail.playlist.uri, row.uri); return }
-      if (tab === "liked" || tab === "queue") {
+      if (tab === "liked" || tab === "queue" || tab === "new") {
         var list = rows.filter(function(x) { return x.type === "track" || x.type === "episode" })
         var start = list.findIndex(function(x) { return x.uri === row.uri })
         service.playUris(list.slice(Math.max(0, start), start + 100).map(function(x) { return x.uri }))
@@ -1423,6 +1433,7 @@ Item {
             if (!l.authenticated) return "Enter to connect this computer (opens your browser once)"
             return l.running ? "Starting up…" : "Enter to start playback on this computer"
           }
+          if (row.kind === "action" && m.uris) return m.uris.length + " opening cues from the newest scores, newest first"
           if (row.kind === "action") return root.detail && root.detail.playlist ? "Shuffle is " + (root.service && root.service.player.shuffle ? "on" : "off") : ""
           return ""
         }

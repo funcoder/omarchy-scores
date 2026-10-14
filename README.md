@@ -12,8 +12,9 @@ catalog.
   scores, newest first, and Enter again opens a score's cues. Shift+Enter plays.
 - **Classics.** Landmark scores, from *The Godfather* to *Dune: Part Two*,
   grouped by decade.
-- **New.** Scores released in the last fortnight, with the ones by composers on
-  the list first.
+- **New.** The latest cues up top: the opening tracks of the newest scores, which
+  "Play the latest cues" plays straight through. Below them are the scores
+  released in the last fortnight, with the ones by composers on the list first.
 - **My scores.** The scores among your saved albums. `Shift+L` on any score
   saves it here.
 - **Search** only finds scores: score albums, composers, cues from scores and
