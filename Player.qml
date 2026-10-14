@@ -1433,7 +1433,7 @@ Item {
             if (!l.authenticated) return "Enter to connect this computer (opens your browser once)"
             return l.running ? "Starting up…" : "Enter to start playback on this computer"
           }
-          if (row.kind === "action" && m.uris) return m.uris.length + " opening cues from the newest scores, newest first"
+          if (row.kind === "action" && m.uris) return m.uris.length + " opening cues from the newest scores, your composers first"
           if (row.kind === "action") return root.detail && root.detail.playlist ? "Shuffle is " + (root.service && root.service.player.shuffle ? "on" : "off") : ""
           return ""
         }
