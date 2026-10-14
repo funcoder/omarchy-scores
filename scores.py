@@ -41,6 +41,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 
 APP = "funcoder-scores"
 # Spotify Vinyl's settings: its client ID is reused, and its spotifyd device
@@ -562,19 +563,57 @@ def op_me(_):
 
 def op_playlists(_):
     user = me()
-    items = paged("/me/playlists", {"limit": 50}, 1000)
+    items = [p for p in paged("/me/playlists", {"limit": 50}, 1000) if p]
     cfg = load_config()
     include = set(cfg.get("scorePlaylists") or [])
     exclude = set(cfg.get("otherPlaylists") or [])
+    # The tracks decide where Spotify lets us read them (playlists you own or
+    # collaborate on); the name decides for the rest; x overrides both.
+    readable = [p for p in items if p.get("id") not in include | exclude and not is_score_playlist(p)
+                and ((p.get("owner") or {}).get("id") == user["id"] or p.get("collaborative"))]
+    shares = playlist_score_shares(readable)
     out = []
     for p in items:
-        if not p:
-            continue
         shaped = shape_playlist(p, user["id"])
-        # The title guess, overridden by whatever the user has marked with x.
-        shaped["score"] = shaped["id"] in include or (shaped["id"] not in exclude and is_score_playlist(p))
+        pid = shaped["id"]
+        shaped["score"] = pid in include or (pid not in exclude and (
+            is_score_playlist(p) or shares.get(pid, 0) > SCORE_SHARE))
         out.append(shaped)
     return {"items": out}
+
+
+# A party playlist nearly always has a movie song or two in it; a score
+# playlist is mostly scores. More than a third sits well clear of both.
+SCORE_SHARE = 1 / 3
+SHARE_SAMPLE = 100
+
+
+def playlist_score_shares(playlists):
+    """Share of each playlist's first 100 tracks that come from scores.
+    Cached against Spotify's snapshot_id, so a playlist is only read again
+    after it changes."""
+    cache = _cache_read("playlist-shares", 10 ** 9) or {}
+    stale = [p for p in playlists if (cache.get(p["id"]) or {}).get("snapshot") != p.get("snapshot_id")]
+
+    def measure(p):
+        try:
+            page = api("GET", f"/playlists/{p['id']}/items", {"limit": SHARE_SAMPLE}) or {}
+        except ApiError as e:
+            if e.status == 429:
+                raise
+            return p["id"], None
+        tracks = [(r.get("item") or r.get("track") or {}) for r in page.get("items") or []]
+        albums = [(t.get("album") or {}).get("name") for t in tracks if t]
+        share = sum(1 for a in albums if is_score(a)) / len(albums) if albums else 0
+        return p["id"], {"snapshot": p.get("snapshot_id"), "share": share}
+
+    if stale:
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            for pid, result in pool.map(measure, stale):
+                if result:
+                    cache[pid] = result
+        _cache_write("playlist-shares", cache)
+    return {pid: v.get("share", 0) for pid, v in cache.items()}
 
 
 def op_mark_playlist(args):

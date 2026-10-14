@@ -30,10 +30,13 @@ title. Labels name scores very consistently: "(Original Motion Picture Score)",
 Broadway Cast Recording". A song-heavy compilation titled "Soundtrack" counts
 too.
 
-Playlists have no album title, so their name and description have to say
-"score", "soundtrack", "film" and so on. Keyword-stuffed descriptions fool
-that, and some score playlists never say so, so press `x` to put a playlist
-in the right group. Your choices are saved in `config.json`.
+A playlist you own or collaborate on counts as a score playlist when more than a
+third of its tracks (from the first 100) come from scores. A party playlist with
+one movie song stays out. Spotify doesn't let development-mode apps read the
+tracks of playlists you only follow, so those go by name and description:
+"score", "soundtrack", "film", a 'From "Film"' title and so on. Press `x` to
+move any playlist the rules get wrong; your choices are saved in `config.json`.
+Track checks are cached until a playlist changes, so they're only redone then.
 
 The Composers and Classics lists ship with the plugin in `catalog.json`, so browsing
 them costs no Spotify API calls. Add your own entries there by Spotify ID.
