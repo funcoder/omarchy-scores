@@ -1,0 +1,742 @@
+{
+ "_about": "Bundled so Composers and Classics cost no Spotify API calls. Spotify IDs resolved once by search; edit by hand to add more.",
+ "composers": [
+  {
+   "id": "0YC192cP3KPCRWx8zr8MfZ",
+   "name": "Hans Zimmer",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab67616100005174371632043a8c12bb7eeeaf9d",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178371632043a8c12bb7eeeaf9d"
+  },
+  {
+   "id": "3dRfiJ2650SZu6GbydcHNb",
+   "name": "John Williams",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab6761610000517486b13e4d2e65ebf694384ef4",
+   "thumb": "https://i.scdn.co/image/ab6761610000f17886b13e4d2e65ebf694384ef4"
+  },
+  {
+   "id": "1nIUhcKHnK6iyumRyoV68C",
+   "name": "Ennio Morricone",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab67616100005174d0430d67cd189b4b54dcf6f9",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178d0430d67cd189b4b54dcf6f9"
+  },
+  {
+   "id": "0OcclcP5o8VKH2TRqSY2A7",
+   "name": "Howard Shore",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab67616100005174845fb635fad84bdcda4bf51f",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178845fb635fad84bdcda4bf51f"
+  },
+  {
+   "id": "1csBgT42N4pPPs1HJhxXIK",
+   "name": "Thomas Newman",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab6761610000517457d373e62254d0aba7d663d9",
+   "thumb": "https://i.scdn.co/image/ab6761610000f17857d373e62254d0aba7d663d9"
+  },
+  {
+   "id": "3PhL2Vdao2v8SS8AptuhAr",
+   "name": "James Horner",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/bbe181a99bca82d2673dfc83dc1b6430dddc89e0",
+   "thumb": "https://i.scdn.co/image/b9cf08f9b15580c19275b285236ba52aa524c571"
+  },
+  {
+   "id": "5qBZETtyzfYnXOobDXbmcD",
+   "name": "Danny Elfman",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab67616100005174f741706530dbd36d43078b98",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178f741706530dbd36d43078b98"
+  },
+  {
+   "id": "71jzN72g8qWMCMkWC5p1Z0",
+   "name": "Alexandre Desplat",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab6772690000dd22f9a8d4c2fbbdba7962061bf9",
+   "thumb": "https://i.scdn.co/image/ab67726900008f74f9a8d4c2fbbdba7962061bf9"
+  },
+  {
+   "id": "7t8q7ikEtcPNtoaKAm9Vu6",
+   "name": "Jerry Goldsmith",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/772f237752da5dd2d89226946340e5e570dd2804",
+   "thumb": "https://i.scdn.co/image/511c930b17317a352313f1ce0a518c84f7c50207"
+  },
+  {
+   "id": "5bUj39bg0zEbRzjUEISMG9",
+   "name": "Bernard Herrmann",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/2ddcaa965c9649b5f30a34437ea5c04c7b045568",
+   "thumb": "https://i.scdn.co/image/6ba25204a494012b1ea32bebc2a17dd23220057d"
+  },
+  {
+   "id": "7ctAOUlIAs7yuMODWE2Fyz",
+   "name": "John Barry",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/a01fa97107d88d68d7269ba77c5925af3d497258",
+   "thumb": "https://i.scdn.co/image/8eb36348223779cc665a9b816108f48d460c62d2"
+  },
+  {
+   "id": "4P70aqttdpJ9vuYFDmf7f6",
+   "name": "Vangelis",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab676161000051744eb15436c35fface06216543",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1784eb15436c35fface06216543"
+  },
+  {
+   "id": "2VZNmg4vCnew4Pavo8zDdW",
+   "name": "Max Richter",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab676161000051744abcdadf341d4234eb0ef88c",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1784abcdadf341d4234eb0ef88c"
+  },
+  {
+   "id": "3IpQziA6YwD53PQ5xbwgLF",
+   "name": "Jóhann Jóhannsson",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab67616100005174d48e69f1a6285f43905ad89b",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178d48e69f1a6285f43905ad89b"
+  },
+  {
+   "id": "2lD1D6eEh7xQdBtnl2Ik7Y",
+   "name": "Hildur Guðnadóttir",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab676161000051746d70895712606452be154b46",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1786d70895712606452be154b46"
+  },
+  {
+   "id": "24eDfi2MSYo3A87hCcgpIL",
+   "name": "Ludwig Göransson",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/70cbb19cc5b77451245b2266c0e0bef002886c8a",
+   "thumb": "https://i.scdn.co/image/0602b84d7be66f164ab566553846fdbbe0e78ba3"
+  },
+  {
+   "id": "4kLvhMAuCloLxoP1aVM7Lr",
+   "name": "Michael Giacchino",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab676161000051749945209ac13720afd7eea2e3",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1789945209ac13720afd7eea2e3"
+  },
+  {
+   "id": "7nzSoJISlVJsn7O0yTeMOB",
+   "name": "Joe Hisaishi",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab67616100005174255e3fb8af57399bc9975c61",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178255e3fb8af57399bc9975c61"
+  },
+  {
+   "id": "1tcgfoMTT1szjUeaikxRjA",
+   "name": "Ryuichi Sakamoto",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab67616100005174323c73cb431edf7ba9ed34b2",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178323c73cb431edf7ba9ed34b2"
+  },
+  {
+   "id": "6cadOIa5DTh6a5mGo5r4bh",
+   "name": "Trent Reznor and Atticus Ross",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab676161000051740178d25a117d796ce3ba4fee",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1780178d25a117d796ce3ba4fee"
+  },
+  {
+   "id": "0z9s3P5vCzKcUBSxgBDyLU",
+   "name": "Jonny Greenwood",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab67616100005174acbb7bcb7ea82f111bb72b8b",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178acbb7bcb7ea82f111bb72b8b"
+  },
+  {
+   "id": "18oYqNtcLUHrqO7LfX7qni",
+   "name": "Nicholas Britell",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab67616100005174ac71b9e9c61e3b989058015a",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178ac71b9e9c61e3b989058015a"
+  },
+  {
+   "id": "2snm3HmsnDUDxbIChdl2Oj",
+   "name": "Justin Hurwitz",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab67616100005174152668866cc33ae3fe2f4ede",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178152668866cc33ae3fe2f4ede"
+  },
+  {
+   "id": "7LbEDjJKrmWoMcN3OpaNnR",
+   "name": "Daniel Pemberton",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab6761610000517467e1d0b15132dcfc195aff8c",
+   "thumb": "https://i.scdn.co/image/ab6761610000f17867e1d0b15132dcfc195aff8c"
+  },
+  {
+   "id": "01xiB0IlXMXy3wrrotgDnU",
+   "name": "Clint Mansell",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab676161000051745f0eee42c3248b45d85918ed",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1785f0eee42c3248b45d85918ed"
+  },
+  {
+   "id": "0Xk15jHKly4c3AhPr5vjoA",
+   "name": "Alan Silvestri",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/4b5404dc1d64c379098aca34b70e21d94ebd05ef",
+   "thumb": "https://i.scdn.co/image/26dcbef07205f113ae10a7d832d98042fce6ed3a"
+  },
+  {
+   "id": "1BxqJ6pOCi8mkSjCbFYjpW",
+   "name": "Harry Gregson-Williams",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/4ed8c46dc3b8274bc4dadb32152f721cad0dd88a",
+   "thumb": "https://i.scdn.co/image/40384060cef93481063f9ce32ec0b9d7f36174a3"
+  },
+  {
+   "id": "4W3fa7tiXGVXl3KilbACqt",
+   "name": "Gustavo Santaolalla",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab67616100005174074781eba0a9c008945cde18",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178074781eba0a9c008945cde18"
+  },
+  {
+   "id": "29LOCR81IrdEJjCAeCEOU3",
+   "name": "Mica Levi",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab676161000051743ad4df19c8414f531cf6549c",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1783ad4df19c8414f531cf6549c"
+  },
+  {
+   "id": "1joFZGTRER78nUsWtgHCHR",
+   "name": "Rachel Portman",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/ab67616100005174ecdcf117a93f2cab88a9faf8",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178ecdcf117a93f2cab88a9faf8"
+  },
+  {
+   "id": "5svDnd8joFhbpbA3Ar0CfN",
+   "name": "Junkie XL",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/5d563bce6d03fc92be3e4fbb4dbb34f7d92d717c",
+   "thumb": "https://i.scdn.co/image/7c4161e4561ca604e7d04d8a7ad33a636754506f"
+  },
+  {
+   "id": "0RYyGExpy57GLGa1GtFoVo",
+   "name": "Nino Rota",
+   "section": "Film",
+   "image": "https://i.scdn.co/image/69526c8aa78690c8730ac50906e1770e101c0413",
+   "thumb": "https://i.scdn.co/image/3b8da466bf72173e2564fdfb3d4324ab95003782"
+  },
+  {
+   "id": "1hCkSJcXREhrodeIHQdav8",
+   "name": "Ramin Djawadi",
+   "section": "Television",
+   "image": "https://i.scdn.co/image/ab6761610000517491e7dd670bc7d3ec7d1cbc6f",
+   "thumb": "https://i.scdn.co/image/ab6761610000f17891e7dd670bc7d3ec7d1cbc6f"
+  },
+  {
+   "id": "2ifvIECHAlEgPMBuBOJ0lG",
+   "name": "Bear McCreary",
+   "section": "Television",
+   "image": "https://i.scdn.co/image/ab676161000051747cfb8906597801fcadec3513",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1787cfb8906597801fcadec3513"
+  },
+  {
+   "id": "2wWBoQpcybsDVpouFubTqZ",
+   "name": "Kris Bowers",
+   "section": "Television",
+   "image": "https://i.scdn.co/image/ab676161000051749e3561ec795ab1e1f48aea53",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1789e3561ec795ab1e1f48aea53"
+  },
+  {
+   "id": "04ZLnodB6WbVvYg2LECqpQ",
+   "name": "Natalie Holt",
+   "section": "Television",
+   "image": "https://i.scdn.co/image/ab676161000051742643bc2ea156ed70ffa671f9",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1782643bc2ea156ed70ffa671f9"
+  },
+  {
+   "id": "3V79CTgRnsDdJSTqKitROv",
+   "name": "Nobuo Uematsu",
+   "section": "Games",
+   "image": "https://i.scdn.co/image/6d16eab036ec8adcab92aff1ddc0a00d6f96acb4",
+   "thumb": "https://i.scdn.co/image/11755e2782770844058dcb2da5dddad303bbaca0"
+  },
+  {
+   "id": "3Rwlus4QnnBSnTe8pJV0rw",
+   "name": "Austin Wintory",
+   "section": "Games",
+   "image": "https://i.scdn.co/image/ab676161000051742417d8ee7e6e111af0238873",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1782417d8ee7e6e111af0238873"
+  },
+  {
+   "id": "1I9Hqy4QnMyVhZwRM2r41B",
+   "name": "Gareth Coker",
+   "section": "Games",
+   "image": "https://i.scdn.co/image/ab676161000051744a4b0f0781c669cfffb11ebc",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1784a4b0f0781c669cfffb11ebc"
+  },
+  {
+   "id": "13ab1LgQZ3tQOhkDRRYB8Y",
+   "name": "Mick Gordon",
+   "section": "Games",
+   "image": "https://i.scdn.co/image/ab676161000051747751162bd035e28232a2381f",
+   "thumb": "https://i.scdn.co/image/ab6761610000f1787751162bd035e28232a2381f"
+  },
+  {
+   "id": "2uDsUIyCIqk9wKj17I8WAH",
+   "name": "Yoko Shimomura",
+   "section": "Games",
+   "image": "https://i.scdn.co/image/ab67616d00001e02f12e9091af7a7626f1bf37db",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851793e0fabd5474507ee081532"
+  },
+  {
+   "id": "4TbtUt49IMXEIMmNdifHb1",
+   "name": "Stephen Sondheim",
+   "section": "Musicals",
+   "image": "https://i.scdn.co/image/68660c8adfa4a242e185854c769b1ed7675f026d",
+   "thumb": "https://i.scdn.co/image/c90aa1be0720190a1af64bcf7cf8f1c52264f9fd"
+  },
+  {
+   "id": "4aXXDj9aZnlshx7mzj3W1N",
+   "name": "Lin-Manuel Miranda",
+   "section": "Musicals",
+   "image": "https://i.scdn.co/image/ab67616100005174d1a725f75427ad3c3062dae2",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178d1a725f75427ad3c3062dae2"
+  },
+  {
+   "id": "4aP1lp10BRYZO658B2NwkG",
+   "name": "Andrew Lloyd Webber",
+   "section": "Musicals",
+   "image": "https://i.scdn.co/image/ab67616100005174960970e8fe0e7a52ec731c45",
+   "thumb": "https://i.scdn.co/image/ab6761610000f178960970e8fe0e7a52ec731c45"
+  },
+  {
+   "id": "7daPb40K64rRtF36wd3ZOk",
+   "name": "Stephen Schwartz",
+   "section": "Musicals",
+   "image": "https://i.scdn.co/image/f8155f35f7db365f7f093e1794866c5c3778baf1",
+   "thumb": "https://i.scdn.co/image/47e34e5c1dd00930eb52a29c491be487a8d18a51"
+  }
+ ],
+ "classics": [
+  {
+   "id": "5CeLOKEJeP3EpEdT9v2lep",
+   "name": "The Godfather (Music From The Original Motion Picture Soundtrack)",
+   "section": "1970s",
+   "owner": "Nino Rota, Carlo Savina",
+   "year": "1972",
+   "total": 12,
+   "image": "https://i.scdn.co/image/ab67616d00001e02a0fc6fd292bab2be473cbabe",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851a0fc6fd292bab2be473cbabe"
+  },
+  {
+   "id": "1QeYHaWTTPvgu2wqKCPlUc",
+   "name": "Jaws (Music From The Original Motion Picture Soundtrack)",
+   "section": "1970s",
+   "owner": "John Williams",
+   "year": "1975",
+   "total": 12,
+   "image": "https://i.scdn.co/image/ab67616d00001e02ab20bec5a0973a0776f8f525",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851ab20bec5a0973a0776f8f525"
+  },
+  {
+   "id": "7JZZRKGjSSmFHRLM6Beg8F",
+   "name": "Close Encounters Of The Third Kind",
+   "section": "1970s",
+   "owner": "John Williams",
+   "year": "1977",
+   "total": 26,
+   "image": "https://i.scdn.co/image/ab67616d00001e02416f172c9112212a39b511ed",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851416f172c9112212a39b511ed"
+  },
+  {
+   "id": "55gMu4AvAKCbCaGv3GIXgy",
+   "name": "Star Wars: A New Hope (Original Motion Picture Soundtrack)",
+   "section": "1970s",
+   "owner": "John Williams",
+   "year": "1977",
+   "total": 16,
+   "image": "https://i.scdn.co/image/ab67616d00001e02a9916ac15c83a9f0438216cf",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851a9916ac15c83a9f0438216cf"
+  },
+  {
+   "id": "2G0x71VHZ7XLJlm56LzVX2",
+   "name": "Chariots Of Fire (Original Motion Picture Soundtrack / Remastered)",
+   "section": "1980s",
+   "owner": "Vangelis",
+   "year": "1981",
+   "total": 7,
+   "image": "https://i.scdn.co/image/ab67616d00001e0221703c471960a82a147a6f82",
+   "thumb": "https://i.scdn.co/image/ab67616d0000485121703c471960a82a147a6f82"
+  },
+  {
+   "id": "6c37nZLIRbHWwBIIv6QI1p",
+   "name": "Raiders of the Lost Ark (Original Motion Picture Soundtrack)",
+   "section": "1980s",
+   "owner": "John Williams",
+   "year": "1981",
+   "total": 22,
+   "image": "https://i.scdn.co/image/ab67616d00001e02dddd581b75644d0ee9bf0974",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851dddd581b75644d0ee9bf0974"
+  },
+  {
+   "id": "6NkuCdMz5tGmHbOXAWbtCW",
+   "name": "Blade Runner (Music From The Original Soundtrack)",
+   "section": "1980s",
+   "owner": "Vangelis",
+   "year": "1982",
+   "total": 12,
+   "image": "https://i.scdn.co/image/ab67616d00001e02dc5cd149f1cdbec4cfedb234",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851dc5cd149f1cdbec4cfedb234"
+  },
+  {
+   "id": "5hdpBZRfkVI9Orjq9cVJ9x",
+   "name": "E.T. The Extra-Terrestrial (Music From The Original Motion Picture Soundtrack)",
+   "section": "1980s",
+   "owner": "John Williams",
+   "year": "1982",
+   "total": 8,
+   "image": "https://i.scdn.co/image/ab67616d00001e02651269ed6eac9f32b11c7aca",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851651269ed6eac9f32b11c7aca"
+  },
+  {
+   "id": "2UtweRAj4D5VEB2OQs4gTp",
+   "name": "The Back To The Future Trilogy",
+   "section": "1980s",
+   "owner": "Alan Silvestri",
+   "year": "1985",
+   "total": 20,
+   "image": "https://i.scdn.co/image/ab67616d00001e02b74a35840be06420a6c7caf0",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851b74a35840be06420a6c7caf0"
+  },
+  {
+   "id": "2fOlcWrSR032MxwMCQe9LA",
+   "name": "The Mission: Music From The Motion Picture",
+   "section": "1980s",
+   "owner": "Ennio Morricone",
+   "year": "1986",
+   "total": 20,
+   "image": "https://i.scdn.co/image/ab67616d00001e02f126b5a1693a25b14396ad94",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851f126b5a1693a25b14396ad94"
+  },
+  {
+   "id": "0hvxA5cmM7GmXxYSd3kkK5",
+   "name": "Cinema Paradiso (Original Motion Picture Soundtrack) [The Complete Edition]",
+   "section": "1980s",
+   "owner": "Ennio Morricone",
+   "year": "1988",
+   "total": 23,
+   "image": "https://i.scdn.co/image/ab67616d00001e02392202ae82aad36f7142c248",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851392202ae82aad36f7142c248"
+  },
+  {
+   "id": "1zqfyMgA1aXwVDbukfqSdE",
+   "name": "Batman (Original Motion Picture Score)",
+   "section": "1980s",
+   "owner": "Danny Elfman",
+   "year": "1989",
+   "total": 21,
+   "image": "https://i.scdn.co/image/ab67616d00001e02f5ee870e082d6f11d000554e",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851f5ee870e082d6f11d000554e"
+  },
+  {
+   "id": "4pv4SQkB4SXrY5bynbW0lf",
+   "name": "Edward Scissorhands",
+   "section": "1990s",
+   "owner": "Danny Elfman",
+   "year": "1990",
+   "total": 17,
+   "image": "https://i.scdn.co/image/ab67616d00001e02cea0b277d478f10c3be6ea36",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851cea0b277d478f10c3be6ea36"
+  },
+  {
+   "id": "1yyFmCMeNtuLWsLZAXPStf",
+   "name": "Jurassic Park",
+   "section": "1990s",
+   "owner": "John Williams",
+   "year": "1993",
+   "total": 16,
+   "image": "https://i.scdn.co/image/ab67616d00001e0292f051ce3c585b5c2db21d52",
+   "thumb": "https://i.scdn.co/image/ab67616d0000485192f051ce3c585b5c2db21d52"
+  },
+  {
+   "id": "1I3unGxGIIxCQkYPlzzaL8",
+   "name": "Schindler's List",
+   "section": "1990s",
+   "owner": "John Williams",
+   "year": "1993",
+   "total": 14,
+   "image": "https://i.scdn.co/image/ab67616d00001e02112179621605b07a1f3ff957",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851112179621605b07a1f3ff957"
+  },
+  {
+   "id": "3YA5DdB3wSz4pdfEXoMyRd",
+   "name": "The Lion King",
+   "section": "1990s",
+   "owner": "Hans Zimmer, Elton John, Tim Rice",
+   "year": "1994",
+   "total": 12,
+   "image": "https://i.scdn.co/image/ab67616d00001e02660aadbda2da6b1c2dd3d1a5",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851660aadbda2da6b1c2dd3d1a5"
+  },
+  {
+   "id": "11RrIE8R4WdmybwaItRa97",
+   "name": "Braveheart (Original Motion Picture Soundtrack)",
+   "section": "1990s",
+   "owner": "James Horner, The Choir Of Westminster Abbey, London Symphony Orchestra",
+   "year": "1995",
+   "total": 18,
+   "image": "https://i.scdn.co/image/ab67616d00001e021061524b7fe4e944c74173eb",
+   "thumb": "https://i.scdn.co/image/ab67616d000048511061524b7fe4e944c74173eb"
+  },
+  {
+   "id": "2vbms1edEpirypSspyXZgB",
+   "name": "Titanic: Music from the Motion Picture Soundtrack",
+   "section": "1990s",
+   "owner": "James Horner",
+   "year": "1997",
+   "total": 15,
+   "image": "https://i.scdn.co/image/ab67616d00001e023aa6431062ba631063c93422",
+   "thumb": "https://i.scdn.co/image/ab67616d000048513aa6431062ba631063c93422"
+  },
+  {
+   "id": "1yqkE2BoMZaQRABJRJT2HZ",
+   "name": "Gladiator - Music From The Motion Picture",
+   "section": "2000s",
+   "owner": "Hans Zimmer, Gavin Greenaway, Lisa Gerrard",
+   "year": "2000",
+   "total": 35,
+   "image": "https://i.scdn.co/image/ab67616d00001e025e26ee959941f78ce85ac080",
+   "thumb": "https://i.scdn.co/image/ab67616d000048515e26ee959941f78ce85ac080"
+  },
+  {
+   "id": "6tP6p3IVTQpisKZ6kd4cnW",
+   "name": "Requiem for a Dream / OST (Nonesuch store edition)",
+   "section": "2000s",
+   "owner": "Clint Mansell, Kronos Quartet",
+   "year": "2000",
+   "total": 33,
+   "image": "https://i.scdn.co/image/ab67616d00001e027f519ee9bbb3e6d1d6aba171",
+   "thumb": "https://i.scdn.co/image/ab67616d000048517f519ee9bbb3e6d1d6aba171"
+  },
+  {
+   "id": "6zeHM5CV0CjcS0K8ouWE4N",
+   "name": "Harry Potter and The Sorcerer's Stone Original Motion Picture Soundtrack",
+   "section": "2000s",
+   "owner": "John Williams",
+   "year": "2001",
+   "total": 19,
+   "image": "https://i.scdn.co/image/ab67616d00001e0213f982aa5c43146c3d2c1964",
+   "thumb": "https://i.scdn.co/image/ab67616d0000485113f982aa5c43146c3d2c1964"
+  },
+  {
+   "id": "766a5fKJYFy9ii4Kz2bQy9",
+   "name": "Spirited Away Soundtrack",
+   "section": "2000s",
+   "owner": "Joe Hisaishi",
+   "year": "2001",
+   "total": 21,
+   "image": "https://i.scdn.co/image/ab67616d00001e02fd220b07117400ccbc85ed96",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851fd220b07117400ccbc85ed96"
+  },
+  {
+   "id": "04rz93AqGy9JduzV3K81Dh",
+   "name": "The Lord of the Rings: The Fellowship of the Ring (Original Motion Picture Soundtrack)",
+   "section": "2000s",
+   "owner": "Howard Shore",
+   "year": "2001",
+   "total": 18,
+   "image": "https://i.scdn.co/image/ab67616d00001e02128ca6b63d83d47c909a43ce",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851128ca6b63d83d47c909a43ce"
+  },
+  {
+   "id": "4Qe057XqKloVNhnPohj6Yo",
+   "name": "Pirates of the Caribbean: The Curse of the Black Pearl (Original Motion Picture Soundtrack)",
+   "section": "2000s",
+   "owner": "Klaus Badelt",
+   "year": "2003",
+   "total": 15,
+   "image": "https://i.scdn.co/image/ab67616d00001e0238786c7492ac252797bb2648",
+   "thumb": "https://i.scdn.co/image/ab67616d0000485138786c7492ac252797bb2648"
+  },
+  {
+   "id": "4lCAui1nwxoRBksYiiKjxm",
+   "name": "There Will Be Blood (Music from the Motion Picture)",
+   "section": "2000s",
+   "owner": "Jonny Greenwood",
+   "year": "2007",
+   "total": 13,
+   "image": "https://i.scdn.co/image/ab67616d00001e027eabd88eebf57c5032859613",
+   "thumb": "https://i.scdn.co/image/ab67616d000048517eabd88eebf57c5032859613"
+  },
+  {
+   "id": "60WJsU06uA2tAzYPogY8uR",
+   "name": "The Dark Knight (Original Motion Picture Soundtrack)",
+   "section": "2000s",
+   "owner": "Hans Zimmer, James Newton Howard",
+   "year": "2008",
+   "total": 14,
+   "image": "https://i.scdn.co/image/ab67616d00001e02adeca9303f5b181b46f9a2c1",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851adeca9303f5b181b46f9a2c1"
+  },
+  {
+   "id": "5yN2LiMaA7nEXT35GW4hNu",
+   "name": "Up (Original Motion Picture Soundtrack)",
+   "section": "2000s",
+   "owner": "Michael Giacchino",
+   "year": "2009",
+   "total": 26,
+   "image": "https://i.scdn.co/image/ab67616d00001e0290ab02c84abe851ec8353506",
+   "thumb": "https://i.scdn.co/image/ab67616d0000485190ab02c84abe851ec8353506"
+  },
+  {
+   "id": "2qvA7HmSg1iM6XMiFF76dp",
+   "name": "Inception (Music from the Motion Picture)",
+   "section": "2010s",
+   "owner": "Hans Zimmer",
+   "year": "2010",
+   "total": 12,
+   "image": "https://i.scdn.co/image/ab67616d00001e0278f1fb27efad7f6433c89aac",
+   "thumb": "https://i.scdn.co/image/ab67616d0000485178f1fb27efad7f6433c89aac"
+  },
+  {
+   "id": "1ijkFiMeHopKkHyvQCWxUa",
+   "name": "The Social Network",
+   "section": "2010s",
+   "owner": "Trent Reznor and Atticus Ross",
+   "year": "2010",
+   "total": 19,
+   "image": "https://i.scdn.co/image/ab67616d00001e02897cd4eeff3174110aa6230b",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851897cd4eeff3174110aa6230b"
+  },
+  {
+   "id": "5P9JZJW0itEaDK5RfWiSuZ",
+   "name": "Game Of Thrones (Music From The HBO Series)",
+   "section": "2010s",
+   "owner": "Ramin Djawadi",
+   "year": "2011",
+   "total": 29,
+   "image": "https://i.scdn.co/image/ab67616d00001e02239a1395e4d595efc28af924",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851239a1395e4d595efc28af924"
+  },
+  {
+   "id": "5fEkyTeRzYV32RcT8c5tTn",
+   "name": "Journey (Original Video Game Soundtrack)",
+   "section": "2010s",
+   "owner": "Austin Wintory",
+   "year": "2012",
+   "total": 18,
+   "image": "https://i.scdn.co/image/ab67616d00001e02408d222041f4a60f7d38b223",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851408d222041f4a60f7d38b223"
+  },
+  {
+   "id": "3B61kSKTxlY36cYgzvf3cP",
+   "name": "Interstellar (Original Motion Picture Soundtrack) [Expanded Edition]",
+   "section": "2010s",
+   "owner": "Hans Zimmer",
+   "year": "2014",
+   "total": 30,
+   "image": "https://i.scdn.co/image/ab67616d00001e0281f04c407e0ec68e3dea6b2c",
+   "thumb": "https://i.scdn.co/image/ab67616d0000485181f04c407e0ec68e3dea6b2c"
+  },
+  {
+   "id": "6IV7472Hni7A1ENilCManS",
+   "name": "The Grand Budapest Hotel (Original Soundtrack)",
+   "section": "2010s",
+   "owner": "Alexandre Desplat",
+   "year": "2014",
+   "total": 32,
+   "image": "https://i.scdn.co/image/ab67616d00001e02afda2a51e7bb55197fdeb4c0",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851afda2a51e7bb55197fdeb4c0"
+  },
+  {
+   "id": "1kCHru7uhxBUdzkm4gzRQc",
+   "name": "Hamilton (Original Broadway Cast Recording)",
+   "section": "2010s",
+   "owner": "Lin-Manuel Miranda",
+   "year": "2015",
+   "total": 46,
+   "image": "https://i.scdn.co/image/ab67616d00001e02d72fb5571087bca0a2fed008",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851d72fb5571087bca0a2fed008"
+  },
+  {
+   "id": "3GDfBsNm22NeGSP2vQDWnO",
+   "name": "Arrival (Original Motion Picture Soundtrack)",
+   "section": "2010s",
+   "owner": "Jóhann Jóhannsson",
+   "year": "2016",
+   "total": 20,
+   "image": "https://i.scdn.co/image/ab67616d00001e0200a86f72f75086f7fb441899",
+   "thumb": "https://i.scdn.co/image/ab67616d0000485100a86f72f75086f7fb441899"
+  },
+  {
+   "id": "3GU8BzFEAdFSRjc8jZkL3S",
+   "name": "La La Land (Original Motion Picture Soundtrack)",
+   "section": "2010s",
+   "owner": "Justin Hurwitz, Justin Paul, Benj Pasek",
+   "year": "2016",
+   "total": 15,
+   "image": "https://i.scdn.co/image/ab67616d00001e020bdf4dd39843ad48c5b66bc4",
+   "thumb": "https://i.scdn.co/image/ab67616d000048510bdf4dd39843ad48c5b66bc4"
+  },
+  {
+   "id": "5q53mBxAsq77kK9aCHcAtZ",
+   "name": "Chernobyl (Music from the Original TV Series)",
+   "section": "2010s",
+   "owner": "Hildur Guðnadóttir",
+   "year": "2019",
+   "total": 13,
+   "image": "https://i.scdn.co/image/ab67616d00001e02aaf6b5d286816618564c96c3",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851aaf6b5d286816618564c96c3"
+  },
+  {
+   "id": "16bF6lLLeVcBNgYNreGjYZ",
+   "name": "Joker (Original Motion Picture Soundtrack)",
+   "section": "2010s",
+   "owner": "Hildur Guðnadóttir",
+   "year": "2019",
+   "total": 17,
+   "image": "https://i.scdn.co/image/ab67616d00001e02976db026db9302cac73c0e27",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851976db026db9302cac73c0e27"
+  },
+  {
+   "id": "7IONINkxycqA3eIKlVZ7Bj",
+   "name": "Succession: Season 1 (HBO Original Series Soundtrack)",
+   "section": "2010s",
+   "owner": "Nicholas Britell",
+   "year": "2019",
+   "total": 26,
+   "image": "https://i.scdn.co/image/ab67616d00001e02e654bc3bc09b6c1e013f74a3",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851e654bc3bc09b6c1e013f74a3"
+  },
+  {
+   "id": "56k8ay5oE5apR61WIeE4wQ",
+   "name": "Dune (Original Motion Picture Soundtrack)",
+   "section": "2020s",
+   "owner": "Hans Zimmer",
+   "year": "2021",
+   "total": 22,
+   "image": "https://i.scdn.co/image/ab67616d00001e0208fc88c1ce4624bd8489d80e",
+   "thumb": "https://i.scdn.co/image/ab67616d0000485108fc88c1ce4624bd8489d80e"
+  },
+  {
+   "id": "0rwbMKjNkp4ehQTwf9V2Jk",
+   "name": "Oppenheimer (Original Motion Picture Soundtrack)",
+   "section": "2020s",
+   "owner": "Ludwig Göransson",
+   "year": "2023",
+   "total": 24,
+   "image": "https://i.scdn.co/image/ab67616d00001e02af634982d9b15de3c77f7dd9",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851af634982d9b15de3c77f7dd9"
+  },
+  {
+   "id": "1PeYjDmxcRNvxLd5mGHuCC",
+   "name": "Dune: Part Two (Original Motion Picture Soundtrack)",
+   "section": "2020s",
+   "owner": "Hans Zimmer",
+   "year": "2024",
+   "total": 25,
+   "image": "https://i.scdn.co/image/ab67616d00001e02c48092f7547362b01e0cc5b2",
+   "thumb": "https://i.scdn.co/image/ab67616d00004851c48092f7547362b01e0cc5b2"
+  }
+ ]
+}

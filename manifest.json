@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "funcoder.scores",
+  "name": "Score Vinyl",
+  "version": "0.1.0",
+  "author": "funcoder",
+  "license": "MIT",
+  "description": "Film, TV, game and stage scores on Spotify, the Omarchy way: browse composers and classic scores, catch new releases, keep your saved scores together and search only scores, on a spinning record with theme-duotone artwork and a live visualizer.",
+  "keywords": [
+    "spotify",
+    "film score",
+    "soundtrack",
+    "composers",
+    "music",
+    "player",
+    "visualizer"
+  ],
+  "kinds": [
+    "service",
+    "panel",
+    "bar-widget"
+  ],
+  "keepLoaded": true,
+  "entryPoints": {
+    "service": "Service.qml",
+    "panel": "Player.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Score Vinyl",
+    "description": "Now playing with a mini visualizer; opens the score player",
+    "category": "Media",
+    "aliases": [
+      "scores",
+      "soundtrack",
+      "film music",
+      "now playing"
+    ],
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "showTitle": true,
+      "maxTitleWidth": 220
+    },
+    "schema": [
+      {
+        "key": "showTitle",
+        "type": "boolean",
+        "label": "Show the cue title next to the icon",
+        "defaultValue": true
+      },
+      {
+        "key": "maxTitleWidth",
+        "type": "integer",
+        "label": "Maximum title width",
+        "min": 60,
+        "max": 600,
+        "step": 10,
+        "defaultValue": 220
+      }
+    ]
+  }
+}
