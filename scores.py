@@ -828,39 +828,90 @@ def op_composer(args):
     return result
 
 
-NEW_QUERIES = ['"original score" tag:new', '"motion picture" tag:new', 'soundtrack tag:new',
-               '"cast recording" tag:new', '"video game" soundtrack tag:new']
-NEW_TTL = 6 * 3600
+NEW_TTL = 12 * 3600
+NEW_WINDOW_DAYS = 183
+COMPOSER_RECENT_TTL = 24 * 3600
+CUE_TTL = 7 * 24 * 3600
+CUE_ALBUMS = 20
+# Translated editions of one soundtrack ("Moana (Korean Original Motion
+# Picture Soundtrack)") count as one score; the original-language one stays.
+EDITION_LANGUAGE = re.compile(r"\b(japanese|mandarin|cantonese|chinese|korean|spanish|castilian|latin|french|"
+                              r"canadian|german|italian|portuguese|brazilian|dutch|polish|russian|hindi|tamil|"
+                              r"telugu|thai|turkish|swedish|danish|norwegian|finnish|hebrew|arabic)\b", re.I)
+
+
+def composer_recent(composer):
+    """A composer's ten newest releases, cached for a day. On a rate limit
+    the last copy is used however old, and None means there's none."""
+    name = f"recent-{composer['id']}"
+    cached = _cache_read(name, COMPOSER_RECENT_TTL)
+    if cached is not None:
+        return cached
+    try:
+        page = api("GET", f"/artists/{composer['id']}/albums", {"include_groups": "album,single", "limit": 10}) or {}
+    except ApiError as e:
+        stale = _cache_read(name, float("inf"))
+        if e.status == 429:
+            raise RateLimited(stale)
+        return stale or []
+    albums = [a for a in page.get("items") or [] if a]
+    _cache_write(name, albums)
+    return albums
+
+
+class RateLimited(Exception):
+    def __init__(self, stale):
+        super().__init__("rate limited")
+        self.stale = stale
 
 
 def op_new_scores(args):
-    """Scores released in the last two weeks (Spotify's tag:new). Cached for
-    hours: they change slowly and every query costs quota."""
-    cached = _cache_read("new-scores-v3", NEW_TTL) if not args.get("force") else None
+    """The last six months of scores by the composers on the list, newest
+    first, led by the most-played cue from each.
+
+    Spotify's own "new" search is mostly obscure releases, and development-
+    mode apps can't see popularity to sort them, so who wrote the score is
+    the signal: the list's composers are the ones people know.
+
+    Quota matters more than freshness here (a development-mode app that
+    bursts gets locked out for a day): each composer's releases are cached
+    for a day and fetched one at a time, each album's cue for a week, and
+    while Spotify is refusing calls this keeps going on whatever it has."""
+    cached = _cache_read("new-scores-v4", NEW_TTL) if not args.get("force") else None
     if cached is not None:
         return cached
-    found = {}
-    for q in NEW_QUERIES:
-        data = api("GET", "/search", {"q": q, "type": "album", "limit": 10}) or {}
-        for a in (data.get("albums") or {}).get("items") or []:
-            if a and a.get("id") not in found and is_score(a.get("name")):
-                found[a["id"]] = a
-    known = composer_ids()
-    newest = sorted(found.values(), key=lambda a: a.get("release_date") or "", reverse=True)
+    cutoff = time.strftime("%Y-%m-%d", time.localtime(time.time() - NEW_WINDOW_DAYS * 86400))
+    releases, limited = [], False
+    for composer in catalog().get("composers") or []:
+        if limited:
+            albums = _cache_read(f"recent-{composer['id']}", float("inf")) or []
+        else:
+            try:
+                albums = composer_recent(composer)
+            except RateLimited as e:
+                limited, albums = True, e.stale or []
+        releases.extend(a for a in albums if (a.get("release_date") or "") >= cutoff and is_score(a.get("name")))
+    if limited and not releases:
+        stale = _cache_read("new-scores-v4", float("inf"))
+        if stale is not None:
+            return stale
+        raise ApiError("Spotify is rate limiting this app, so New can't load yet", 429)
+    editions = {}
+    for a in releases:
+        key = re.sub(r"\s*[(\[].*$", "", (a.get("name") or "").lower()).strip()
+        rank = (bool(EDITION_LANGUAGE.search(a.get("name") or "")), a.get("release_date") or "")
+        if key not in editions or rank < editions[key][0]:
+            editions[key] = (rank, a)
+    newest = sorted((a for _, a in editions.values()), key=lambda a: a.get("release_date") or "", reverse=True)
     albums = []
     for a in newest:
-        by_known = any(x.get("id") in known for x in a.get("artists") or [])
-        albums.append(dict(shape_album(a), section="From your composers" if by_known else "Out this fortnight"))
-    albums.sort(key=lambda x: 0 if x["section"] == "From your composers" else 1)
-    # Cues from composers on the list lead, so a new Desplat isn't crowded
-    # out by a dozen obscure releases from the same week.
-    by_list = sorted(newest, key=lambda a: 0 if any(x.get("id") in known for x in a.get("artists") or []) else 1)
-    result = {"items": latest_cues(by_list) + albums}
-    _cache_write("new-scores-v3", result)
+        month = time.strftime("%B %Y", time.strptime((a.get("release_date") or "1970-01")[:7], "%Y-%m"))
+        albums.append(dict(shape_album(a), section=month))
+    result = {"items": latest_cues(newest, offline=limited) + albums}
+    # A partial result from a rate-limited run isn't kept as the fresh copy.
+    if not limited:
+        _cache_write("new-scores-v4", result)
     return result
-
-
-CUE_ALBUMS = 20
 
 
 def top_cue(album):
@@ -877,25 +928,29 @@ def top_cue(album):
         if t and (t.get("album") or {}).get("id") == album.get("id"):
             return t
     page = api("GET", f"/albums/{album['id']}/tracks", {"limit": 1}) or {}
-    first = (page.get("items") or [None])[0]
-    if first:
-        first["album"] = album
-    return first
+    return (page.get("items") or [None])[0]
 
 
-def latest_cues(albums):
-    """One cue, the most played, from each of the newest scores. Spotify
-    won't batch lookups for a development-mode app, so it's a call per
-    score, cached with New."""
+def latest_cues(albums, offline=False):
+    """One cue, the most played, from each of the newest scores. Each is
+    worked out once a week per album; offline, only remembered ones show."""
     cues = []
     for a in albums[:CUE_ALBUMS]:
-        try:
-            t = top_cue(a)
-        except ApiError as e:
-            if e.status == 429:
-                break
-            continue
-        cue = shape_track(t)
+        name = f"cue-{a['id']}"
+        t = _cache_read(name, CUE_TTL)
+        if t is None:
+            t = _cache_read(name, float("inf")) if offline else None
+            if t is None and not offline:
+                try:
+                    t = top_cue(a)
+                except ApiError as e:
+                    if e.status == 429:
+                        offline = True
+                    t = _cache_read(name, float("inf"))
+                else:
+                    if t:
+                        _cache_write(name, t)
+        cue = shape_track(t) if t else None
         if not cue or not cue["uri"]:
             continue
         cue.update(album=a.get("name") or "", albumUri=a.get("uri") or "",

@@ -1234,7 +1234,7 @@ Item {
               }
               if (root.tab === "queue") return "The queue is empty. Play something first."
               if (root.tab === "myscores") return "No scores in your saved albums yet. Shift+L on a score saves it here."
-              if (root.tab === "new") return "No new scores turned up this fortnight."
+              if (root.tab === "new") return "None of your composers has released a score in the last six months."
               return "Nothing here yet"
             }
             color: (root.data[root.tab] || {}).error ? Color.urgent : root.dim
@@ -1433,7 +1433,7 @@ Item {
             if (!l.authenticated) return "Enter to connect this computer (opens your browser once)"
             return l.running ? "Starting up…" : "Enter to start playback on this computer"
           }
-          if (row.kind === "action" && m.uris) return "The most-played cue from each of " + m.uris.length + " new scores, your composers first"
+          if (row.kind === "action" && m.uris) return "The most-played cue from each of " + m.uris.length + " new scores by your composers"
           if (row.kind === "action") return root.detail && root.detail.playlist ? "Shuffle is " + (root.service && root.service.player.shuffle ? "on" : "off") : ""
           return ""
         }

@@ -12,9 +12,9 @@ catalog.
   scores, newest first, and Enter again opens a score's cues. Shift+Enter plays.
 - **Classics.** Landmark scores, from *The Godfather* to *Dune: Part Two*,
   grouped by decade.
-- **New.** The latest cues up top: one cue from each of the 20 newest scores, the
-  one people play most. "Play the latest cues" plays them straight through. Below them are the scores
-  released in the last fortnight, with the ones by composers on the list first.
+- **New.** The last six months of scores by the composers on the list, newest
+  first, led by "Latest cues": the most-played cue from each. Translated editions
+  of one soundtrack count once.
 - **My scores.** The scores among your saved albums. `Shift+L` on any score
   saves it here.
 - **Search** only finds scores: score albums, composers, cues from scores and
@@ -39,10 +39,10 @@ tracks of playlists you only follow, so those go by name and description:
 move any playlist the rules get wrong; your choices are saved in `config.json`.
 Track checks are cached until a playlist changes, so they're only redone then.
 
-Spotify stopped giving development-mode apps popularity numbers, so "most
-played" comes from search ranking: searching for an album's own name lists its
-tracks by listening, not album order. Tracks named like the album, usually the
-main theme, get a lift too.
+New follows the composers on the list, not Spotify's "new" search. That search
+mostly turns up obscure releases, and development-mode apps can't see popularity
+to sort them. "Most played" comes from search ranking: searching for an album's
+own name lists its tracks by listening, not album order.
 
 The Composers and Classics lists ship with the plugin in `catalog.json`, so browsing
 them costs no Spotify API calls. Add your own entries there by Spotify ID.
@@ -88,8 +88,9 @@ so "This computer" is the same in both.
 
 Both plugins use the same Spotify app, and a development-mode app has a small
 request quota. Score Vinyl only checks what's playing while its window or bar
-widget is showing. New releases are cached for 6 hours, and each composer's
-page for a day.
+widget is showing. Everything New needs is cached: each composer's latest releases
+for a day, each score's top cue for a week. While Spotify is rate limiting, New
+shows what it last had.
 
 ### Where things are stored
 
