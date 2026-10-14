@@ -12,8 +12,8 @@ catalog.
   scores, newest first, and Enter again opens a score's cues. Shift+Enter plays.
 - **Classics.** Landmark scores, from *The Godfather* to *Dune: Part Two*,
   grouped by decade.
-- **New.** The latest cues up top: the opening tracks of the newest scores, which
-  "Play the latest cues" plays straight through. Below them are the scores
+- **New.** The latest cues up top: one cue from each of the 20 newest scores, the
+  one people play most. "Play the latest cues" plays them straight through. Below them are the scores
   released in the last fortnight, with the ones by composers on the list first.
 - **My scores.** The scores among your saved albums. `Shift+L` on any score
   saves it here.
@@ -38,6 +38,11 @@ tracks of playlists you only follow, so those go by name and description:
 "score", "soundtrack", "film", a 'From "Film"' title and so on. Press `x` to
 move any playlist the rules get wrong; your choices are saved in `config.json`.
 Track checks are cached until a playlist changes, so they're only redone then.
+
+Spotify stopped giving development-mode apps popularity numbers, so "most
+played" comes from search ranking: searching for an album's own name lists its
+tracks by listening, not album order. Tracks named like the album, usually the
+main theme, get a lift too.
 
 The Composers and Classics lists ship with the plugin in `catalog.json`, so browsing
 them costs no Spotify API calls. Add your own entries there by Spotify ID.
