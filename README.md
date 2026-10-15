@@ -70,6 +70,38 @@ Then bind a key in `~/.config/hypr/bindings.lua` and run `hyprctl reload`.
 o.bind("SUPER + ALT + M", "Score Vinyl", "omarchy-shell shell toggle funcoder.scores '{}'")
 ```
 
+### Omarchy menu (optional)
+
+To control Score Vinyl from the Omarchy menu, add these rows to
+`~/.config/omarchy/extensions/omarchy-menu.jsonc`, inside the outer `{ }`. The
+menu reloads on save. It adds a Score Vinyl submenu with play/pause (only the
+one that applies shows), next, previous and like, plus rows that open the player
+on a tab. Search the menu for "scores" or "soundtracks" to find it. The
+play/pause rows need `jq`.
+
+```jsonc
+"scores": {"icon":"󰎆","label":"Score Vinyl","aliases":["scores","soundtracks","film scores"],"description":"Film, TV, game and stage scores"},
+"scores.open": {"icon":"󰐊","label":"Open player","action":"omarchy-shell shell summon funcoder.scores '{}'"},
+"scores.pause": {"icon":"󰏤","label":"Pause","when":"omarchy-shell funcoder.scores.player status | jq -e .playing","action":"omarchy-shell -q funcoder.scores.player playPause"},
+"scores.play": {"icon":"󰐊","label":"Play","when":"! omarchy-shell funcoder.scores.player status | jq -e .playing","action":"omarchy-shell -q funcoder.scores.player playPause"},
+"scores.next": {"icon":"󰒭","label":"Next cue","action":"omarchy-shell -q funcoder.scores.player next"},
+"scores.previous": {"icon":"󰒮","label":"Previous cue","action":"omarchy-shell -q funcoder.scores.player previous"},
+"scores.like": {"icon":"󰋑","label":"Like playing cue","action":"omarchy-shell -q funcoder.scores.player like"},
+"scores.composers": {"icon":"󰀉","label":"Composers","action":"omarchy-shell shell summon funcoder.scores '{\"tab\":\"composers\"}'"},
+"scores.classics": {"icon":"󰓎","label":"Classics","action":"omarchy-shell shell summon funcoder.scores '{\"tab\":\"classics\"}'"},
+"scores.new": {"icon":"󰎔","label":"New releases","action":"omarchy-shell shell summon funcoder.scores '{\"tab\":\"new\"}'"},
+"scores.myscores": {"icon":"󰋑","label":"My scores","action":"omarchy-shell shell summon funcoder.scores '{\"tab\":\"myscores\"}'"},
+"scores.playlists": {"icon":"󰲸","label":"Playlists","action":"omarchy-shell shell summon funcoder.scores '{\"tab\":\"playlists\"}'"},
+"scores.search": {"icon":"󰍉","label":"Search scores","action":"omarchy-shell funcoder.scores search"},
+```
+
+Open it from anywhere with `omarchy menu summon scores`, or bind a key to it.
+`Super+Ctrl+M` is free by default:
+
+```lua
+o.bind("SUPER + CTRL + M", "Score Vinyl menu", { menu = "scores" })
+```
+
 ## Setup
 
 If you use Spotify Vinyl (or cliamp), Score Vinyl finds its Spotify app's
