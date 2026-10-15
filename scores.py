@@ -1197,7 +1197,7 @@ def write_local_config():
         "bitrate = 320\n"
         f'cache_path = "{SPOTIFYD_CACHE}"\n'
         "max_cache_size = 1000000000\n"
-        "initial_volume = 70\n"
+        "initial_volume = 100\n"
         "volume_normalisation = true\n"
         "use_mpris = true\n"
         'dbus_type = "session"\n'
